@@ -1,26 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <SearchInput />
+    <Location />
+    <Temperature />
+    <Cloud />
+    <Sun />
+    <Humidity />
+    <Wind />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SearchInput from './components/SearchInput.vue';
+import Location from './components/Location.vue';
+import Temperature from './components/Temperature';
+import Cloud from './components/Cloud.vue';
+import Sun from './components/Sun.vue';
+import Humidity from './components/Humidity.vue';
+import Wind from './components/Wind.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SearchInput,
+    Location,
+    Temperature,
+    Cloud,
+    Sun,
+    Humidity,
+    Wind
+
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

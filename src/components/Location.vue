@@ -1,6 +1,6 @@
 <template>
     <div class="location">
-        
+        <h2>London:</h2>
     </div>
 </template>
 
@@ -11,5 +11,11 @@ export default {
 </script>
 
 <style>
-
+    .location{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    letter-spacing: 2px;
+    }
 </style>

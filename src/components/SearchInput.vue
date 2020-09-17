@@ -9,7 +9,7 @@ export default {
     name: "SearchInput",
 
     methods:{
-        handle_change(e){
+        handlechange(e){
             this.$emit('handlechange', e.target.value)
         }
     }

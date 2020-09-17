@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <SearchInput />
-    <Location />
+    <SearchInput @handleChange="handleChange($event)"/>
+    <Location :InputLocation = "InputValue" v-if="InputValue != ''"/>
     <Temperature />
     <Cloud />
     <Sun />
@@ -19,6 +19,9 @@ import Cloud from './components/Cloud.vue';
 import Humidity from './components/Humidity.vue';
 import Wind from './components/Wind.vue';
 
+//debounce
+import debounce from 'lodash.debounce';
+
 export default {
   name: 'App',
   components: {
@@ -30,8 +33,45 @@ export default {
     Humidity,
     Wind
 
+  },
+
+  data(){
+    return{
+      InputValue: '',
+      api_temperature: '',
+      api_humandity : '',
+      api_wind: '',
+      api_cloud_state: ''
+    }
+  },
+
+  methods: {
+    handleChange: debounce(function(payload) {
+    
+      this.InputValue = payload
+
+      //qpi query
+      const API_KEY = '962e96c7edd5b917153804d1e003d0ff'
+      const API = `http://api.openweathermap.org/data/2.5/weather?q=${this.InputValue}&appid=${API_KEY}&units=metric`
+
+      fetch(API)
+      .then(response => response.json())
+             .then(data => {
+            //variable from api
+            this.api_temperature = data.main.temp
+            this.api_humandity = data.main.humidity
+            this.api_wind = data.wind.speed
+            this.api_cloud_state = data.weather[0].main
+          })
+
+      
+    }, 500)
+
+    
   }
+  
 }
+
 </script>
 
 <style>

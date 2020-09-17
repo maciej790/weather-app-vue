@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "debounce": "^1.2.0",
+    "lodash": "^4.17.20",
+    "lodash.debounce": "^4.0.8",
     "vue": "^3.0.0-0"
   },
   "devDependencies": {

@@ -1,12 +1,18 @@
 <template>
     <div class="searchinput">
-        <input type="text" id="inp" placeholder="London">
+        <input type="text" id="inp" placeholder="London" @input="handleChange">
     </div>
 </template>
 
 <script>
 export default {
-    name: "SearchInput"
+    name: "SearchInput",
+
+    methods:{
+        handleChange(e){
+            this.$emit('handleChange', e.target.value)
+        }
+    }
 }
 </script>
 

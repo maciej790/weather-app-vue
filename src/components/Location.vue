@@ -1,12 +1,14 @@
 <template>
     <div class="location">
-        <h2>London:</h2>
+        <h2>{{InputLocation}} {{':'}}</h2>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Location"
+    name: "Location",
+
+    props: ['InputLocation']
 }
 </script>
 

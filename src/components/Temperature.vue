@@ -1,12 +1,16 @@
 <template>
     <div class="temperature">
-        <p>22°</p>
+        <p>{{temperature}}°</p>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Temperature"
+    name: "Temperature",
+
+    props: ['temperature'],
+
+    
 }
 </script>
 

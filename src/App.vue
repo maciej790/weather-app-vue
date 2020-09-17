@@ -1,21 +1,25 @@
 <template>
   <div id="app">
-    <SearchInput @handleChange="handleChange($event)"/>
-    <Location :InputLocation = "InputValue" v-if="InputValue != ''"/>
-    <Temperature />
-    <Cloud />
-    <Sun />
-    <Humidity />
-    <Wind />
+      <SearchInput @handle_change="handle_change($event)"/>
+      <Location :InputLocation = "InputValue" v-if="InputValue != ''"/>
+      <Temperature :temperature = "roundTemperature" v-if="InputValue != '' && error != true"/>
+      <Cloud v-if="InputValue != '' && error != true  && api_cloud_state == 'Clouds'"/>
+      <Sun v-if="InputValue != '' && error != true && api_cloud_state == 'Clear'"/>
+      <Rain v-if="InputValue != '' && error != true && api_cloud_state == 'Rain'"/>
+      <Humidity :humandity = "api_humandity" v-if="InputValue != '' && error != true"/>
+      <Wind :wind = "api_wind" v-if="InputValue != '' && error != true"/>
   </div>
+
 </template>
 
 <script>
+
 import SearchInput from './components/SearchInput.vue';
 import Location from './components/Location.vue';
 import Temperature from './components/Temperature';
 import Cloud from './components/Cloud.vue';
-//import Sun from './components/Sun.vue';
+import Sun from './components/Sun.vue';
+import Rain from './components/Rain.vue';
 import Humidity from './components/Humidity.vue';
 import Wind from './components/Wind.vue';
 
@@ -29,7 +33,8 @@ export default {
     Location,
     Temperature,
     Cloud,
-    //Sun,
+    Sun,
+    Rain,
     Humidity,
     Wind
 
@@ -41,12 +46,24 @@ export default {
       api_temperature: '',
       api_humandity : '',
       api_wind: '',
-      api_cloud_state: ''
+      api_cloud_state: '',
+      error: false
     }
   },
 
+  
+  computed: {
+    roundTemperature: function(){
+        return Math.round(this.api_temperature)
+    }
+  },
+
+
+  
+
+
   methods: {
-    handleChange: debounce(function(payload) {
+    handle_change: debounce(function(payload) {
     
       this.InputValue = payload
 
@@ -62,15 +79,29 @@ export default {
             this.api_humandity = data.main.humidity
             this.api_wind = data.wind.speed
             this.api_cloud_state = data.weather[0].main
-          })
 
-      
-    }, 500)
+            this.error = !true
+
+
+            
+
+          })
+          .catch(error => 
+              console.log(error),
+              this.error = !false
+          );
 
     
-  }
-  
+         
+    }, 500),
+
+    
+  },
+
+
 }
+
+
 
 </script>
 
@@ -100,4 +131,5 @@ export default {
     align-items: center;
     justify-content: center;
   }
+
 </style>

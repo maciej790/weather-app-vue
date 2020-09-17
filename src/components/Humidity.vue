@@ -1,12 +1,14 @@
 <template>
     <div class="humandity">
-        <p>50%</p>
+        <p>{{humandity}}%</p>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Humandity"
+    name: "Humandity",
+
+    props: ['humandity']
 }
 </script>
 

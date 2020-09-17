@@ -1,12 +1,14 @@
 <template>
     <div class="wind">
-        <p>3.1mph</p>
+        <p>{{wind}}mph</p>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Wind"
+    name: "Wind",
+
+    props: ['wind']
 }
 </script>
 

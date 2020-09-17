@@ -69,7 +69,7 @@ export default {
 
       //qpi query
       const API_KEY = '962e96c7edd5b917153804d1e003d0ff'
-      const API = `http://api.openweathermap.org/data/2.5/weather?q=${this.InputValue}&appid=${API_KEY}&units=metric`
+      const API = `https://api.openweathermap.org/data/2.5/weather?q=${this.InputValue}&appid=${API_KEY}&units=metric`
 
       fetch(API)
       .then(response => response.json())

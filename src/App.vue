@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <SearchInput @handle_change="handle_change($event)"/>
+      <SearchInput @handlechange="handlechange($event)"/>
       <Location :InputLocation = "InputValue" v-if="InputValue != ''"/>
       <Temperature :temperature = "roundTemperature" v-if="InputValue != '' && error != true"/>
       <Cloud v-if="InputValue != '' && error != true  && api_cloud_state == 'Clouds'"/>
@@ -63,7 +63,7 @@ export default {
 
 
   methods: {
-    handle_change: debounce(function(payload) {
+    handlechange: debounce(function(payload) {
     
       this.InputValue = payload
 
@@ -96,13 +96,13 @@ export default {
     }, 500),
 
     
-  },
+  }
+
+
+
 
 
 }
-
-
-
 </script>
 
 <style>

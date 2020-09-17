@@ -1,6 +1,6 @@
 <template>
     <div class="searchinput">
-        <input type="text" id="inp" placeholder="London" @input="handle_change">
+        <input type="text" id="inp" placeholder="London" @input="handlechange">
     </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
 
     methods:{
         handle_change(e){
-            this.$emit('handle_change', e.target.value)
+            this.$emit('handlechange', e.target.value)
         }
     }
 }

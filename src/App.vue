@@ -8,9 +8,12 @@
         <Sun v-if="InputValue != '' && error != true && api_cloud_state == 'Clear'"/>
         <Rain v-if="InputValue != '' && error != true && api_cloud_state == 'Rain'"/>
           <div class="below">
-            <Humidity :humandity = "api_humandity" v-if="InputValue != '' && error != true"/>
-            <Wind :wind = "api_wind" v-if="InputValue != '' && error != true"/>
+            <transition-group name="fade">
+              <Humidity :humandity = "api_humandity" v-if="InputValue != '' && error != true"/>
+              <Wind :wind = "api_wind" v-if="InputValue != '' && error != true"/>
+            </transition-group>
           </div>
+          
       </transition-group>
   </div>
 </template>
@@ -53,7 +56,6 @@ export default {
       error: false,
     }
   },
-
   
   computed: {
     roundTemperature: function(){
@@ -61,8 +63,6 @@ export default {
     }
   },
 
-
-  
 
 
   methods: {
@@ -149,7 +149,7 @@ export default {
   .fade-enter-from,
   .fade-leave-to {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateX(20px);
   }
 
      @media only screen and (min-width: 600px) {

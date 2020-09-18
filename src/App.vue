@@ -149,7 +149,7 @@ export default {
   .fade-enter-from,
   .fade-leave-to {
     opacity: 0;
-    transform: translateX(20px);
+    transform: translateY(20px);
   }
 
      @media only screen and (min-width: 600px) {

@@ -27,4 +27,12 @@ export default {
     p{
         font-size: 30px;
     }
+
+         @media only screen and (min-width: 600px) {
+        .humandity{
+            width: 30%;
+            height: 150px;
+            margin-right: 50px;
+        }
+    }
 </style>

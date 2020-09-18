@@ -24,7 +24,14 @@ export default {
         border-radius: 15px;
     }
 
-       p{
+    p{
         font-size: 30px;
     }
+        @media only screen and (min-width: 600px) {
+            .wind{
+                width: 30%;
+                height: 150px;
+                margin-left: 50px;
+            }
+        }
 </style>

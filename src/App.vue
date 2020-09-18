@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-      <SearchInput @handlechange="handlechange($event)"/>
-      <Location :InputLocation = "InputValue" v-if="InputValue != ''"/>
-      <Temperature :temperature = "roundTemperature" v-if="InputValue != '' && error != true"/>
-      <Cloud v-if="InputValue != '' && error != true  && api_cloud_state == 'Clouds'"/>
-      <Sun v-if="InputValue != '' && error != true && api_cloud_state == 'Clear'"/>
-      <Rain v-if="InputValue != '' && error != true && api_cloud_state == 'Rain'"/>
-      <Humidity :humandity = "api_humandity" v-if="InputValue != '' && error != true"/>
-      <Wind :wind = "api_wind" v-if="InputValue != '' && error != true"/>
+      <transition-group name="fade">
+        <SearchInput @handlechange="handlechange($event)"/>
+        <Location :InputLocation = "InputValue" v-if="InputValue != ''"/>
+        <Temperature :temperature = "roundTemperature" v-if="InputValue != '' && error != true"/>
+        <Cloud v-if="InputValue != '' && error != true  && api_cloud_state == 'Clouds'"/>
+        <Sun v-if="InputValue != '' && error != true && api_cloud_state == 'Clear'"/>
+        <Rain v-if="InputValue != '' && error != true && api_cloud_state == 'Rain'"/>
+          <div class="below">
+            <Humidity :humandity = "api_humandity" v-if="InputValue != '' && error != true"/>
+            <Wind :wind = "api_wind" v-if="InputValue != '' && error != true"/>
+          </div>
+      </transition-group>
   </div>
-
 </template>
 
 <script>
@@ -47,7 +50,7 @@ export default {
       api_humandity : '',
       api_wind: '',
       api_cloud_state: '',
-      error: false
+      error: false,
     }
   },
 
@@ -81,8 +84,6 @@ export default {
             this.api_cloud_state = data.weather[0].main
 
             this.error = !true
-
-
             
 
           })
@@ -125,11 +126,36 @@ export default {
 
   #app{
     width: 100%;
-    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
 
+  .below{
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.7s ease;
+  }
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+     @media only screen and (min-width: 600px) {
+        .below{
+          flex-direction: row;
+        }
+
+     }
 </style>

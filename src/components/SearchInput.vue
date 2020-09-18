@@ -1,6 +1,6 @@
 <template>
     <div class="searchinput">
-        <input type="text" id="inp" placeholder="London" @input="handlechange">
+        <input type="text" id="inp" placeholder="Type Your location" @input="handlechange">
     </div>
 </template>
 
